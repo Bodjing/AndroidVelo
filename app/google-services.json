@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "148641801252",
+    "firebase_url": "https://androidvelo-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "androidvelo",
+    "storage_bucket": "androidvelo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148641801252:android:969fec438c8d8e80ede4b1",
+        "android_client_info": {
+          "package_name": "com.example.androidvelo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiZRo7HYQ9ANOF-MiekC8zWsWBm8KXdSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
