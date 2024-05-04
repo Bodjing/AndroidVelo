@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -22,10 +23,12 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.androidvelo.LoginActivity;
 import com.example.androidvelo.databinding.FragmentProfileBinding;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -36,6 +39,7 @@ import java.io.IOException;
 public class ProfileFragment extends Fragment {
     private FragmentProfileBinding binding;
     private Uri filePath;
+    private EditText profileDescriptionEditText;
 
     @Nullable
     @Override
@@ -44,6 +48,10 @@ public class ProfileFragment extends Fragment {
 
         loadUserInfo();
 
+        // Находим EditText для описания профиля по его id
+        profileDescriptionEditText = binding.profileDescription;
+
+        // Обработчик нажатия на изображение профиля для выбора изображения
         binding.profileImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,11 +59,20 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        // Обработчик нажатия на кнопку выхода из учетной записи
         binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getContext(), LoginActivity.class));
+            }
+        });
+
+        // Обработчик нажатия на кнопку сохранения описания профиля
+        binding.saveProfileDescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveProfileDescription(profileDescriptionEditText.getText().toString());
             }
         });
 
@@ -95,11 +112,17 @@ public class ProfileFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String username = snapshot.child("username").getValue().toString();
                         String profileImage = snapshot.child("profileImage").getValue().toString();
+                        String profileDescription = snapshot.child("profileDescription").getValue().toString(); // Получаем описание профиля из базы данных
 
                         binding.usernameTv.setText(username);
 
                         if (!profileImage.isEmpty()){
                             Glide.with(getContext()).load(profileImage).into(binding.profileImageView);
+                        }
+
+                        //Описание профиля
+                        if (!profileDescription.isEmpty()) {
+                            profileDescriptionEditText.setText(profileDescription); // Устанавливаем описание профиля в EditText
                         }
                     }
 
@@ -109,6 +132,9 @@ public class ProfileFragment extends Fragment {
                     }
                 });
     }
+
+
+
 
     private void selectImage(){
         Intent intent = new Intent();
@@ -139,5 +165,27 @@ public class ProfileFragment extends Fragment {
                     });
         }
     }
+
+
+    // Метод для сохранения описания профиля в базу данных Firebase
+    private void saveProfileDescription(String description) {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+
+        userRef.child("profileDescription").setValue(description)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getContext(), "Profile description saved", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "Failed to save profile description", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 }
 

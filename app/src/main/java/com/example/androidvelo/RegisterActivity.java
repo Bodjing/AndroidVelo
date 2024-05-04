@@ -45,6 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         userInfo.put("username", binding.usernameEt.getText().toString());
                                         userInfo.put("profileImage", "");
                                         userInfo.put("chats", "");
+                                        userInfo.put("profileDescription", ""); // Добавляем описание профиля
 
                                         FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                 .setValue(userInfo);

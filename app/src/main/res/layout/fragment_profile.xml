@@ -8,16 +8,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/logout_btn"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent"
-            android:src="@drawable/baseline_arrow_circle_left_24"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="30dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/profile_image_view" />
+            app:layout_constraintTop_toTopOf="@+id/profile_image_view" >
+
+            <ImageButton
+                android:id="@+id/logout_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/baseline_arrow_circle_left_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exit"
+                android:textColor="@android:color/black"
+                android:layout_below="@id/logout_btn"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
 
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -54,6 +68,19 @@
             app:layout_constraintTop_toBottomOf="@+id/username_tv"
             android:hint="Enter your description..."
             />
+
+        <Button
+            android:id="@+id/save_profile_description"
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:text="Save"
+            android:fontFamily="@font/ubuntu_light"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_description" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
