@@ -32,6 +32,14 @@ public class NewChatFragment extends Fragment {
 
         loadUsers();
 
+        binding.backChatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Возвращаемся на чат фрагмент
+                requireActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
+
         return binding.getRoot();
     }
 

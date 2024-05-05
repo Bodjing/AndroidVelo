@@ -8,12 +8,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:id="@+id/chat_header"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:background="@color/light_blue"
+            android:padding="16dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Чаты"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:fontFamily="@font/ubuntu_medium"/>
+
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/chats_rv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/newChatButton" />
+            app:layout_constraintBottom_toTopOf="@+id/newChatButton"
+            app:layout_constraintTop_toBottomOf="@+id/chat_header" />
 
         <Button
             android:id="@+id/newChatButton"

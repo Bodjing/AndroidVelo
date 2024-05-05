@@ -12,7 +12,7 @@
         <LinearLayout
             android:id="@+id/profile_header"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:orientation="horizontal"
             android:background="@color/light_blue"
             android:padding="16dp"
@@ -24,9 +24,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Профиль"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:fontFamily="@font/ubuntu_medium"/>
 
             <!-- Кнопка выхода -->
             <ImageButton
@@ -35,6 +35,14 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"
                 android:src="@drawable/_115235_exit_logout_sign_out_114030" />
+
+            <!-- Настройки -->
+            <ImageButton
+                android:id="@+id/setting_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/icons8_settings"/>
         </LinearLayout>
 
 

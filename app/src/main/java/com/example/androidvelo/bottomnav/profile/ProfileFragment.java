@@ -19,9 +19,12 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.androidvelo.LoginActivity;
+import com.example.androidvelo.R;
+import com.example.androidvelo.bottomnav.setting.SettingFragment;
 import com.example.androidvelo.databinding.FragmentProfileBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -73,6 +76,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 saveProfileDescription(profileDescriptionEditText.getText().toString());
+            }
+        });
+
+        // Обработчик нажатия на кнопку настроек профиля
+        binding.settingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSettingFragment();
             }
         });
 
@@ -185,6 +196,15 @@ public class ProfileFragment extends Fragment {
                         Toast.makeText(getContext(), "Failed to save profile description", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    //SettingFragment
+    private void openSettingFragment() {
+        // Открываем фрагмент настроек
+        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, new SettingFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 }
