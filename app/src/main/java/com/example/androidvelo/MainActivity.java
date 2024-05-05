@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.androidvelo.bottomnav.chats.ChatsFragment;
 import com.example.androidvelo.bottomnav.home.HomeFragment;
-import com.example.androidvelo.bottomnav.new_chat.NewChatFragment;
+import com.example.androidvelo.bottomnav.options.OptionsFragment;
 import com.example.androidvelo.bottomnav.profile.ProfileFragment;
 import com.example.androidvelo.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
         Map<Integer, Fragment> fragmentMap = new HashMap<>();
         fragmentMap.put(R.id.news_page, new HomeFragment());
+        fragmentMap.put(R.id.options, new OptionsFragment());
         fragmentMap.put(R.id.chats, new ChatsFragment());
-        fragmentMap.put(R.id.new_chat, new NewChatFragment());
+        //fragmentMap.put(R.id.new_chat, new NewChatFragment());
         fragmentMap.put(R.id.profile, new ProfileFragment());
 
         binding.bottomNav.setOnItemSelectedListener(item -> {

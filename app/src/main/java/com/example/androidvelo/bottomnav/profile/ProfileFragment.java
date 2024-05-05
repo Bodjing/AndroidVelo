@@ -143,17 +143,17 @@ public class ProfileFragment extends Fragment {
         pickImageActivityResultLauncher.launch(intent);
     }
 
-    private void uploadImage(){
-        if (filePath!=null){
+    private void uploadImage() {
+        if (filePath != null) {
             String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-            FirebaseStorage.getInstance().getReference().child("images/"+uid)
+            FirebaseStorage.getInstance().getReference().child("images/" + uid)
                     .putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Toast.makeText(getContext(), "Photo upload complete", Toast.LENGTH_SHORT).show();
 
-                            FirebaseStorage.getInstance().getReference().child("images/"+uid).getDownloadUrl()
+                            FirebaseStorage.getInstance().getReference().child("images/" + uid).getDownloadUrl()
                                     .addOnSuccessListener(new OnSuccessListener<Uri>() {
                                         @Override
                                         public void onSuccess(Uri uri) {

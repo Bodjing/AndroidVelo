@@ -5,15 +5,21 @@
         android:id="@+id/news_page"
         android:title="News"
         android:icon="@drawable/baseline_article_24"/>
+
+    <item
+        android:id="@+id/options"
+        android:title="Options"
+        android:icon="@drawable/options"/>
+
     <item
         android:id="@+id/chats"
         android:title="Chats"
         android:icon="@drawable/baseline_3p_24"/>
 
-    <item
+    <!-- <item
         android:id="@+id/new_chat"
         android:title="New Chats"
-        android:icon="@drawable/baseline_chat_24"/>
+        android:icon="@drawable/baseline_chat_24"/>-->
 
     <item
         android:id="@+id/profile"
